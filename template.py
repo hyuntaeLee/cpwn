@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
     author: {{author}}
@@ -10,8 +10,8 @@ filename = "{{filename}}"
 libcname = "{{libcname}}"
 host = "{{host}}"
 port = {{port}}
-elf = context.binary = ELF(filename)
-context.terminal = ['tmux', 'neww']
+e = context.binary = ELF(filename)
+context.terminal=["tmux","split","-h"]
 if libcname:
     libc = ELF(libcname)
 gs = '''
@@ -22,11 +22,11 @@ b main
 
 def start():
     if args.GDB:
-        return gdb.debug(elf.path, gdbscript = gs)
+        return gdb.debug(e.path, gdbscript = gs)
     elif args.REMOTE:
         return remote(host, port)
     else:
-        return process(elf.path)
+        return process(e.path)
 
 p = start()
 
