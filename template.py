@@ -10,6 +10,7 @@ filename = "{{filename}}"
 libcname = "{{libcname}}"
 host = "{{host}}"
 port = {{port}}
+context.log_level ="debug"
 e = context.binary = ELF(filename)
 context.terminal=["tmux","split","-h"]
 if libcname:
